@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login";
 
-function Navbar() {
-  const [theme, setTheme] = useState("light");
+function Navbar({theme, setTheme}) {
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -17,7 +12,7 @@ function Navbar() {
 
   return (
     <>
-    <nav className="w-full shadow-md fixed top-0 left-0 right-0 bg-white">
+    <nav className="w-full shadow-md fixed top-0 left-0 right-0 bg-base-100 text-base-content">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         
         {/* Logo */}
@@ -44,7 +39,7 @@ function Navbar() {
           
 
           {/* Theme Toggle */}
-          <button onClick={toggleTheme} className="btn btn-ghost btn-circle">
+          <button onClick={toggleTheme} className="btn btn-ghost btn-circle ">
             {theme === "light" ? "🌙" : "☀️"}
           </button>
 

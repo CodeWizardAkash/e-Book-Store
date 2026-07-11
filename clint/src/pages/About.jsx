@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 function About() {
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
     <section id="about" className="py-16 mt-15 bg-base-100">
       <div className="max-w-7xl mx-auto px-4">
 

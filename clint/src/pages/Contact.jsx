@@ -4,8 +4,8 @@ import Navbar from "../components/Navbar";
 function Contact() {
   return (
     <>
-    <Navbar/>
-    <section id="contact" className="py-16 mt-15 bg-base-200">
+    {/* <Navbar/> */}
+    <section id="contact" className="py-16 mt-15 bg-base-100 text-base-content">
       <div className="max-w-7xl mx-auto px-4">
 
         {/* Heading */}

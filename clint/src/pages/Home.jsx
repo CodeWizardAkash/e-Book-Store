@@ -6,7 +6,7 @@ import Banner from '../components/Banner';
 function Home(){
   return (
     <>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Banner/>
       {/* <Freebook /> */}
       <Footer />

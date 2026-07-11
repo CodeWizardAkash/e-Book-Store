@@ -5,7 +5,7 @@ import emailsvg from "/email_svg.svg";
 function Banner(){
     return(
         <>
-        <div className="max-w-screen-2xl container flex flex-col md:px-20 py-4 mx-auto md:flex-row">
+        <div className="max-w-screen-2xl container flex flex-col md:px-20 py-4 mx-auto md:flex-row ">
             <div className="px-4 order-2 md:order-1 md:mt-30 w-full md:w-1/2" >
                 <div>
                     <h1 className="text-4xl font-bold">Hello welcome here to learn something {" "}

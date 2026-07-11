@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Login from "./Login";
+import Login from "../components/Login";
 
 function Signup(){
     const [openLogin, setOpenLogin] = useState(false);
