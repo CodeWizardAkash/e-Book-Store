@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Story Book",
+    "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    "price": 0,
+    "category": "Free",
+    "status": "Read Now",
+    "img_url": "https://cdn.pixabay.com/photo/2016/11/29/07/21/book-1868068_640.jpg"
+  },
+  {
+    "id": 2,
+    "name": "JavaScript Basics",
+    "title": "Learn JavaScript from scratch with simple examples.",
+    "price": 299,
+    "category": "paid",
+    "status": "Buy Now",
+    "img_url": "https://cdn.pixabay.com/photo/2015/09/05/21/51/reading-925589_640.jpg"
+  },
+  {
+    "id": 3,
+    "name": "React Guide",
+    "title": "A complete guide to modern React development.",
+    "price": 499,
+    "category": "Free",
+    "status": "Read Now",
+    "img_url": "https://cdn.pixabay.com/photo/2017/08/06/22/01/books-2596809_640.jpg"
+  },
+  {
+    "id": 4,
+    "name": "CSS Mastery",
+    "title": "Master CSS, Flexbox, Grid and responsive design.",
+    "price": 0,
+    "category": "Free",
+    "status": "Read Now",
+    "img_url": "https://images.unsplash.com/photo-1476275466078-4007374efbbe?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGJvb2t8ZW58MHx8MHx8fDA="
+  },
+  {
+    "id": 5,
+    "name": "Node.js Handbook",
+    "title": "Backend development with Node.js and Express.",
+    "price": 399,
+    "category": "Free",
+    "status": "Read Now",
+    "img_url": "https://cdn.pixabay.com/photo/2014/09/05/18/32/old-books-436498_640.jpg"
+  }
+]

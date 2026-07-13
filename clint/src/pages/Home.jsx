@@ -8,7 +8,9 @@ function Home(){
     <>
       {/* <Navbar/> */}
       <Banner/>
-      {/* <Freebook /> */}
+      
+      {/* <AllBooks/> */}
+      
       <Footer />
     </>
   )

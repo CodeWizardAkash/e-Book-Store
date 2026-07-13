@@ -5,6 +5,7 @@ import Signup from './pages/Signup';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
+import Books from './pages/Books';
 import {Route, Routes} from 'react-router-dom'
 function App(){
   const [theme, setTheme] = useState(
@@ -23,6 +24,7 @@ function App(){
         <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/books' element={<Books/>}/>        
         <Route path='/about' element={<About/>}/>
         <Route path='*' element={<NotFound/>} />
       </Routes>

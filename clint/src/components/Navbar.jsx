@@ -16,14 +16,14 @@ function Navbar({theme, setTheme}) {
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         
         {/* Logo */}
-        <div className="text-2xl font-bold">BookStore</div>
+        <div className="text-2xl font-bold" href="/">BookStore</div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
           <ul className="flex gap-6 font-medium">
             <li className="hover:text-primary  hover:font-bold cursor-pointer"><a href="/">Home</a></li>
             <li className="hover:text-primary hover:font-bold cursor-pointer"><a href="/books">Books</a></li>
-            <li className="hover:text-primary hover:font-bold cursor-pointer"><a href="/course">Course</a></li>
+            {/* <li className="hover:text-primary hover:font-bold cursor-pointer"><a href="/course">Course</a></li> */}
             <li className="hover:text-primary hover:font-bold cursor-pointer"><a href="/contact ">Contact</a></li>
             <li className="hover:text-primary hover:font-bold cursor-pointer"><a href="/about">About</a></li>
           </ul>
@@ -57,7 +57,7 @@ function Navbar({theme, setTheme}) {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden px-4 pb-4">
+        <div className="md:hidden px-4 pb-4 bg-base-200">
           <ul className="flex flex-col gap-4 font-medium">
             <li><a href="/">Home</a></li>
             <li><a href="/course">Course</a></li>
@@ -65,11 +65,11 @@ function Navbar({theme, setTheme}) {
             <li><a href="/about">About</a></li>
           </ul>
 
-          <div className="mt-4 flex gap-3">
-            <button onClick={toggleTheme} className="btn btn-outline btn-sm">
-              {theme === "light" ? "Dark" : "Light"}
+          <div className="mt-4 flex gap-5">
+            <button onClick={toggleTheme} className=" w-10 bg-amber-700 ">
+              {theme === "light" ? "🌙" : "☀️"}
             </button>
-            <button className="btn btn-primary btn-sm">Login</button>
+            <button className="btn btn-primary btn-sm" onClick={()=>setOpenLogin(true)}>Login</button>
           </div>
         </div>
       )}
