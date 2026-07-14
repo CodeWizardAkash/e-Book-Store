@@ -1,5 +1,5 @@
 import React from "react";
-import rupee from "/rupee-sign.svg"
+import rupee from "../../public/rupee-sign.svg"
 
 function Card({book}) {
   return (
