@@ -5,8 +5,8 @@ function Signup(){
     const [openLogin, setOpenLogin] = useState(false);
     return(
         <>
-        <div className="flex justify-center items-center h-screen">
-            <div className="w-100 border-1 relative border-gray-100 rounded-md shadow-xl p-5 relative">
+        <div className="flex justify-center items-center h-screen bg-base-200">
+            <div className="w-100 relative  rounded-md shadow-xl p-5 relative bg-base-100">
 
                 <button className=""><a className="absolute top-3 right-4 text-xl" href="/">✕</a></button>
                 <h2 className="text-2xl font-bold mb-4 text-center">Sign up</h2>
