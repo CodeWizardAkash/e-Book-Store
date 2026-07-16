@@ -39,7 +39,7 @@ function Books() {
           error minima nemo, optio consequuntur odio quae recusandae molestias.
         </p>
 
-        <div className="book grid grid-cols-1 gap-5 md:grid-cols-2 md:mb-5 md:overflow-x-auto [&::-webkit-scrollbar]:hidden">
+        <div className="book grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 d:mb-5 md:overflow-x-auto [&::-webkit-scrollbar]:hidden">
           {books.map((book) => (
             <Card key={book._id} book={book} />
           ))}
