@@ -21,7 +21,7 @@ export const getAllBooks = async (req, res) =>{
 // GET /api/books/:id
 export const getBookById = async (req, res)=>{
     try{
-        const book = await Book.findById(req.param.id);
+        const book = await Book.findById(req.params.id);
 
         if(!book){
             return res.status(404).json({

@@ -1,9 +1,10 @@
 import React from "react";
-// import rupee from "../../public/rupee-sign.svg"
+import {Link} from "react-router-dom";
 
 function Card({book}) {
   return (
-    <>
+    
+      <Link to={`/books/${book._id}`}>
       <div>
         <div className="md:w-88.5 rounded-md  shadow-xl flex flex-col flex-shrink-0  justify-center items-center hover:scale-103 duration-200 bg-base-100">
           <div className="h-64 border-none">
@@ -48,8 +49,8 @@ function Card({book}) {
 
           </div>
         </div>
-      </div>
-    </>
+      </div>  
+      </Link>
   );
 }
 
