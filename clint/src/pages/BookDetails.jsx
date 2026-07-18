@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { API } from "../services/book.service";
+import API from "../services/api.service";
 
 function BookDetails() {
   const { id } = useParams();

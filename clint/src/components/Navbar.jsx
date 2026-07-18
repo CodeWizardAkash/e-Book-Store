@@ -1,14 +1,29 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login";
+import { logout } from "../services/auth.service.js";
 
 function Navbar({theme, setTheme}) {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState("");
+  const [openLogin, setOpenLogin] = useState(false);
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
+  
 
-  const [openLogin, setOpenLogin] = useState(false);
+  const handleLogout = async () => {
+    try {
+      const data = await logout();
+
+      alert(data.message);
+
+      setUser(null);
+
+    } catch (error) {
+      console.log(error.response?.data || error.message);
+    }
+  };
 
   return (
     <>
@@ -43,7 +58,25 @@ function Navbar({theme, setTheme}) {
             {theme === "light" ? "🌙" : "☀️"}
           </button>
 
-          <button className="btn btn-primary btn-sm cursor-pointer hover:bg-emerald-500 hover:text-white w-15 py-1 rounded-md" onClick={()=>setOpenLogin(true)}>Login</button>
+
+          {user?(
+            <button
+              className="btn btn-error"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          ):(
+            <button 
+              className="btn btn-primary btn-sm cursor-pointer hover:bg-emerald-500 hover:text-white w-15 py-1 rounded-md"
+              onClick={()=>setOpenLogin(true)}
+              >
+                Login
+            </button> 
+          )}             
+
+
+
         </div>
 
         {/* Mobile Button */}
@@ -60,7 +93,7 @@ function Navbar({theme, setTheme}) {
         <div className="md:hidden px-4 pb-4 bg-base-200">
           <ul className="flex flex-col gap-4 font-medium">
             <li><a href="/">Home</a></li>
-            <li><a href="/course">Course</a></li>
+            <li><a href="/books">Books</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a href="/about">About</a></li>
           </ul>
@@ -74,7 +107,7 @@ function Navbar({theme, setTheme}) {
         </div>
       )}
     </nav>
-    <Login open={openLogin} setOpen={setOpenLogin} />
+    <Login open={openLogin} setOpen={setOpenLogin} setUser={setUser} />
     </>
 
   );
