@@ -8,16 +8,18 @@ export const signup = async (userData)=>{
 
 //login
 export const login = async (userData)=>{
-    const res = await API.post("/users/login", userData, {
-        withCredentials: true,
-    });
+    const res = await API.post("/users/login", userData);
     return res.data;
 }
 
 // Logout
 export const logout = async () => {
-  const res = await API.post("/users/logout", {}, {
-    withCredentials: true,
-  });
+  const res = await API.post("/users/logout", {},);
+  return res.data;
+};
+
+//Profile
+export const getProfile = async () => {
+  const res = await API.get("/users/profile");
   return res.data;
 };

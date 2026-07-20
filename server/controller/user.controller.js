@@ -88,6 +88,13 @@ export const login = async (req, res)=>{
             {expiresIn: "7d",}
         )
 
+        res.cookie("jwt", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        });
+
         res.json({
             success: true,
             message: "Login successful",
@@ -97,11 +104,6 @@ export const login = async (req, res)=>{
                 email: user.email,
                 role: user.role,
             }
-        })
-
-        res.cookie("jwt", token,{
-            httpOnly:true,
-            
         })
     }catch(error){
         console.error(error);
@@ -133,3 +135,27 @@ export const logout = async (req, res) => {
   }
 };
 
+// GET /api/users/profile
+export const getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};

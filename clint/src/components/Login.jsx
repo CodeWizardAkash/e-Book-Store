@@ -3,7 +3,7 @@ import { login } from "../services/auth.service.js";
 import { Link } from "react-router-dom";
 
 
-function Login({ open, setOpen, setUser }) {
+function Login({ open, setOpen}) {
   if (!open) return null;
 
   const [loading, setLoading] = useState(false);
@@ -28,13 +28,13 @@ function Login({ open, setOpen, setUser }) {
       const data = await login(formData);
       alert(data.message);
 
-      setUser(data.user);
-
       setFormData({
         email:"",
         password:"",
       })
       setOpen(false);
+      
+      window.location.reload();
     }catch(error){
       alert(error.response?.data?.message || "Login failed");
     }finally{

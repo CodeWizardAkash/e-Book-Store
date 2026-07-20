@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login";
 import { logout } from "../services/auth.service.js";
+import { Link } from "react-router-dom";
+import { getProfile } from "../services/auth.service.js";
 
-function Navbar({theme, setTheme}) {
+function Navbar({theme, setTheme, user, setUser}) {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState("");
+  // const [user, setUser] = useState("");
   const [openLogin, setOpenLogin] = useState(false);
+  // const [profile, setProfile] = useState(null);
+  
+  // useEffect(()=>{
+  //   const fetchProfile = async ()=>{
+  //     try{
+  //       const data = await getProfile();
+  //       setProfile(data.user);
+  //     }catch(error){
+  //       setProfile(null);
+  //     }
+  //   }
+  //   fetchProfile();
+  // },[]);
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
-  };
-  
-
-  const handleLogout = async () => {
-    try {
-      const data = await logout();
-
-      alert(data.message);
-
-      setUser(null);
-
-    } catch (error) {
-      console.log(error.response?.data || error.message);
-    }
   };
 
   return (
@@ -59,33 +60,54 @@ function Navbar({theme, setTheme}) {
           </button>
 
 
-          {user?(
-            <button
-              className="btn btn-error"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          ):(
+          {!user?(
             <button 
               className="btn btn-primary btn-sm cursor-pointer hover:bg-emerald-500 hover:text-white w-15 py-1 rounded-md"
               onClick={()=>setOpenLogin(true)}
               >
                 Login
-            </button> 
+            </button>
+          ):(            
+            <Link className="relative" to={'/profile'}>
+                {/* Avatar */}
+                <img
+                  src={user?.avatar || "/default-avatar.png"}
+                  alt="profile"
+                  className="w-10 h-10 rounded-full cursor-pointer border"
+                />
+            </Link>        
           )}             
-
-
 
         </div>
 
-        {/* Mobile Button */}
-        <button
-          className="md:hidden text-2xl"
-          onClick={() => setOpen(!open)}
-        >
-          ☰
-        </button>
+
+       {/* Mobile Button */}   
+        <div className="flex gap-5 md:hidden">
+          {!user?(
+            <button 
+              className="btn btn-primary btn-sm cursor-pointer hover:bg-emerald-500 hover:text-white w-15 py-1 rounded-md"
+              onClick={()=>setOpenLogin(true)}
+              >
+                Login
+            </button>
+          ):(            
+            <Link className="relative" to={'/profile'}>
+                {/* Avatar */}
+                <img
+                  src={user?.avatar || "/default-avatar.png"}
+                  alt="profile"
+                  className="w-10 h-10 rounded-full cursor-pointer border"
+                />
+            </Link>        
+          )} 
+          
+          <button
+            className=" text-2xl"
+            onClick={() => setOpen(!open)}
+          >
+            ☰
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -98,12 +120,10 @@ function Navbar({theme, setTheme}) {
             <li><a href="/about">About</a></li>
           </ul>
 
-          <div className="mt-4 flex gap-5">
-            <button onClick={toggleTheme} className=" w-10 bg-amber-700 ">
-              {theme === "light" ? "🌙" : "☀️"}
-            </button>
-            <button className="btn btn-primary btn-sm" onClick={()=>setOpenLogin(true)}>Login</button>
-          </div>
+          
+          <button onClick={toggleTheme} className="mt-2 w-10 h-10 bg-base-100 rounded-full ">
+            {theme === "light" ? "🌙" : "☀️"}
+           </button>
         </div>
       )}
     </nav>

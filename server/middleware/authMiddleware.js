@@ -1,27 +1,29 @@
 import jwt from "jsonwebtoken";
+export const protect = (req, res, next) => {
+  console.log(req.cookies);
 
-export const protect = (req, res, next)=>{
-    try{
-        const token = req.cookis.jwt;
+  const token = req.cookies.jwt;
 
-        if(!token) {
-            return res.status(401).json({
-                success: false,
-                message: "Not authorized, token missing",
-            })
-        }
+  console.log("Token:", token);
 
-        // verify token
-        const decode = jwt.verify(token, process.env.JWT_SECRET);
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: "Token missing",
+    });
+  }
 
-        // Save decoded data for later use
-        req.user = decoded;
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        next();
-    }catch(error){
-        return res.status(401).json({
-            success: false,
-            message: "Invalid token",
-        });
-    }
-}
+    req.user = decoded;
+
+    next();
+  } catch (error) {
+    console.log(error);
+    return res.status(401).json({
+      success: false,
+      message: "Invalid token",
+    });
+  }
+};

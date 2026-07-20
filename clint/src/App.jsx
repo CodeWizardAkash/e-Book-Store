@@ -7,8 +7,12 @@ import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import Books from './pages/Books';
 import BookDetails from './pages/BookDetails';
+import Profile from './pages/Profile';
+import { getProfile } from './services/auth.service';
 import {Route, Routes} from 'react-router-dom'
 function App(){
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") || "light"
   )
@@ -18,9 +22,28 @@ function App(){
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const data = await getProfile();
+        setUser(data.user);
+      } catch (error) {
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  if (loading) {
+    return <div >Loading...</div>;
+  }
+
   return (
     <div className="min-h-screen bg-base-100 text-base-content">
-      <Navbar theme={theme} setTheme={setTheme} />
+      <Navbar theme={theme} setTheme={setTheme} user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<Signup/>}/>
@@ -28,6 +51,7 @@ function App(){
         <Route path='/books' element={<Books/>}/>
         <Route path='/books/:id' element={<BookDetails/>}/>
         <Route path='/about' element={<About/>}/>
+        <Route path='/profile' element={<Profile />}/>
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>
