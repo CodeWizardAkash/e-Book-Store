@@ -3,28 +3,32 @@ import Login from "./Login";
 import { logout } from "../services/auth.service.js";
 import { Link } from "react-router-dom";
 import { getProfile } from "../services/auth.service.js";
+import { ShoppingCart } from "lucide-react";
+import { getCart } from "../services/cart.service";
 
 function Navbar({theme, setTheme, user, setUser}) {
   const [open, setOpen] = useState(false);
   // const [user, setUser] = useState("");
   const [openLogin, setOpenLogin] = useState(false);
-  // const [profile, setProfile] = useState(null);
-  
-  // useEffect(()=>{
-  //   const fetchProfile = async ()=>{
-  //     try{
-  //       const data = await getProfile();
-  //       setProfile(data.user);
-  //     }catch(error){
-  //       setProfile(null);
-  //     }
-  //   }
-  //   fetchProfile();
-  // },[]);
-
+  const [cartCount, setCartCount] = useState(0);
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const data = await getCart();
+        setCartCount(data.cartCount);
+      } catch (err) {
+        setCartCount(0);
+      }
+    };
+
+    if (user) {
+      fetchCart();
+    }
+  }, [user]);
 
   return (
     <>
@@ -52,6 +56,14 @@ function Navbar({theme, setTheme, user, setUser}) {
               className="input input-bordered input-sm outline-none"
             />
           </div>
+
+          <Link to="/cart" className="relative">
+              <ShoppingCart size={24} />
+
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+                  {cartCount}
+              </span>
+          </Link>
           
 
           {/* Theme Toggle */}

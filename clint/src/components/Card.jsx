@@ -1,7 +1,19 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import { addToCart } from "../services/cart.service";
 
 function Card({book}) {
+
+  const handleAddToCart = async () => {
+    try {
+      const data = await addToCart(book._id);
+  
+      alert(data.message);
+    } catch (error) {
+      alert(error.response?.data?.message);
+    }
+  };
+
   return (
     
       <Link to={`/books/${book._id}`}>
@@ -38,10 +50,11 @@ function Card({book}) {
               </div>
             </div>
             
+            
             <div className="flex justify-between py-5 mb-2 ">
-              <button className="  bg-amber-500 w-38 hover:bg-amber-600 font-semibold py-2 px-5 rounded-md">
+              <Link to={'/books'} onClick={handleAddToCart}  className="  bg-amber-500 w-38 hover:bg-amber-600 font-semibold py-2 px-5 rounded-md">
                 ADD TO CART                
-              </button>
+              </Link>
               <button className=" bg-emerald-400 w-38 hover:bg-emerald-500 font-semibold py-2 rounded-md">
                 BUY NOW
               </button>

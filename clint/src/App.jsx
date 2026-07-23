@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Books from './pages/Books';
 import BookDetails from './pages/BookDetails';
 import Profile from './pages/Profile';
+import Cart from './pages/Cart';
 import { getProfile } from './services/auth.service';
 import {Route, Routes} from 'react-router-dom'
 function App(){
@@ -52,6 +53,7 @@ function App(){
         <Route path='/books/:id' element={<BookDetails/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/profile' element={<Profile />}/>
+        <Route path="/cart" element={<Cart />} />
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>

@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import bookRoute from "./routes/book.route.js";
 import userRoute from  "./routes/user.route.js";
+import cartRoute from "./routes/cart.route.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(cors({
 
 app.use("/api/books", bookRoute);
 app.use("/api/users", userRoute);
+app.use("/api/cart", cartRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World");

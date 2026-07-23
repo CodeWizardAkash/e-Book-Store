@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import API from "../services/api.service";
+import { addToCart } from "../services/cart.service";
 
 function BookDetails() {
   const { id } = useParams();
@@ -19,6 +20,16 @@ function BookDetails() {
       setBook(res.data.book);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const handleAddToCart = async () => {
+    try {
+      const data = await addToCart(book._id);
+
+      alert(data.message);
+    } catch (error) {
+      alert(error.response?.data?.message);
     }
   };
 
@@ -77,7 +88,7 @@ function BookDetails() {
               ₹{book.price}
             </span>
 
-            <button className="btn btn-warning">
+            <button onClick={handleAddToCart} className="btn btn-warning">
               Add to Cart
             </button>
 
