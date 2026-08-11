@@ -10,6 +10,8 @@ import BookDetails from './pages/BookDetails';
 import Profile from './pages/Profile';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import MyOrders from './pages/MyOrders';
+import OrderDetails from './pages/OrderDetails';
 import { getProfile } from './services/auth.service';
 import {Route, Routes} from 'react-router-dom'
 function App(){
@@ -56,6 +58,8 @@ function App(){
         <Route path='/profile' element={<Profile />}/>
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout/>}/>
+        <Route path="/orders" element={<MyOrders/>}/>
+        <Route path="/orders/:orderId" element={<OrderDetails/>}/>
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>

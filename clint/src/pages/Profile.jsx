@@ -37,6 +37,14 @@ function Profile() {
 
   return (
     <div className="mt-25">
+      <div>
+        <Link
+          to="/orders"
+          className="btn btn-primary"
+        >
+          My Orders
+        </Link>
+
         <Link to={'/'}>
             <button
                 className="btn btn-error"
@@ -45,6 +53,8 @@ function Profile() {
                 Logout
             </button>
         </Link>
+      </div>
+        
         <div className="max-w-lg mx-auto p-6 shadow rounded">
             <h1 className="text-3xl font-bold mb-5">My Profile</h1>
 
