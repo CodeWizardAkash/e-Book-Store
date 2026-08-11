@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { addToCart } from "../services/cart.service";
+import { addToCart } from "../services/cart.service.js";
 
 function Card({book}) {
 
@@ -40,7 +40,7 @@ function Card({book}) {
 
             <div className="flex justify-between  px-2 mt-2">
               <h1
-              className=" inline-block p-1 px-2 text-sm text-white rounded-3xl bg-gray-500">
+                className=" inline-block p-1 px-2 text-sm text-white rounded-3xl bg-gray-500">
                 {book.category}
               </h1>
 
@@ -52,12 +52,12 @@ function Card({book}) {
             
             
             <div className="flex justify-between py-5 mb-2 ">
-              <Link to={'/books'} onClick={handleAddToCart}  className="  bg-amber-500 w-38 hover:bg-amber-600 font-semibold py-2 px-5 rounded-md">
+              <Link to={'/books'} onClick={handleAddToCart}  className="  bg-amber-500 w-38 hover:bg-amber-600 font-semibold py-2 text-center rounded-md">
                 ADD TO CART                
               </Link>
-              <button className=" bg-emerald-400 w-38 hover:bg-emerald-500 font-semibold py-2 rounded-md">
+              <Link to={`/checkout?bookId=${book._id}`} className=" bg-emerald-400 w-38 hover:bg-emerald-500 font-semibold py-2 text-center rounded-md">
                 BUY NOW
-              </button>
+              </Link>
             </div>
 
           </div>

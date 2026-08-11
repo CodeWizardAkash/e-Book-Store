@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   getCart,
   removeFromCart,
@@ -116,6 +117,14 @@ function Cart() {
             <h2 className="text-2xl font-bold">
               Total: ₹{total}
             </h2>
+            
+            <Link to={'/checkout'}>
+              <button
+                className="btn btn-success"
+              >
+                Order Now
+              </button>
+            </Link>
 
             <button
               className="btn btn-warning"

@@ -36,7 +36,7 @@ function Navbar({theme, setTheme, user, setUser}) {
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         
         {/* Logo */}
-        <div className="text-2xl font-bold" href="/">BookStore</div>
+        <Link className="text-2xl font-bold" to={'/'}>BookStore</Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
@@ -94,7 +94,15 @@ function Navbar({theme, setTheme, user, setUser}) {
 
 
        {/* Mobile Button */}   
-        <div className="flex gap-5 md:hidden">
+        <div className="flex gap-6 md:hidden">
+          <Link to="/cart" className="relative">
+              <ShoppingCart size={30} />
+
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+                  {cartCount}
+              </span>
+          </Link>
+
           {!user?(
             <button 
               className="btn btn-primary btn-sm cursor-pointer hover:bg-emerald-500 hover:text-white w-15 py-1 rounded-md"
@@ -108,7 +116,7 @@ function Navbar({theme, setTheme, user, setUser}) {
                 <img
                   src={user?.avatar || "/default-avatar.png"}
                   alt="profile"
-                  className="w-10 h-10 rounded-full cursor-pointer border"
+                  className="w-8 h-8 rounded-full cursor-pointer border"
                 />
             </Link>        
           )} 

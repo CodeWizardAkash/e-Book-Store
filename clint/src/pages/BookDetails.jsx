@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import API from "../services/api.service";
 import { addToCart } from "../services/cart.service";
+import { Link } from "react-router-dom";
 
 function BookDetails() {
   const { id } = useParams();
@@ -92,9 +93,12 @@ function BookDetails() {
               Add to Cart
             </button>
 
-            <button className="btn btn-success">
-              Buy Now
-            </button>
+            <Link to={`/checkout?bookId=${book._id}`}>
+              <button className="btn btn-success">
+                Buy Now
+              </button>
+            </Link>
+            
 
           </div>
 
