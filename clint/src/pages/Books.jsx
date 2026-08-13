@@ -2,18 +2,22 @@ import { useEffect, useState } from "react";
 // import list from "../../public/list.json";
 import Card from "../components/Card";
 import { getAllBooks } from "../services/book.service.js";
+import { useSearchParams } from "react-router-dom";
 
 function Books() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search") || "";
+
   useEffect(()=>{
     fecthBooks();
-  },[]);
+  },[search]);
 
   async function fecthBooks(){
     try{
-      const data = await getAllBooks();
+      const data = await getAllBooks(search);
       setBooks(data.books);
     }catch(error){
       console.log(error);

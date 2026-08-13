@@ -5,14 +5,28 @@ import { Link } from "react-router-dom";
 import { getProfile } from "../services/auth.service.js";
 import { ShoppingCart } from "lucide-react";
 import { getCart } from "../services/cart.service";
+import { useNavigate } from "react-router-dom";
 
 function Navbar({theme, setTheme, user, setUser}) {
   const [open, setOpen] = useState(false);
   // const [user, setUser] = useState("");
   const [openLogin, setOpenLogin] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
+  };
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      if (search.trim()) {
+        navigate(`/books?search=${encodeURIComponent(search.trim())}`);
+      } else {
+        navigate("/books");
+      }
+    }
   };
 
   useEffect(() => {
@@ -29,6 +43,7 @@ function Navbar({theme, setTheme, user, setUser}) {
       fetchCart();
     }
   }, [user]);
+  
 
   return (
     <>
@@ -40,7 +55,7 @@ function Navbar({theme, setTheme, user, setUser}) {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
-          <ul className="flex gap-6 font-medium">
+          <ul className="flex gap-7 font-medium">
             <li className="hover:text-primary  hover:font-bold cursor-pointer"><a href="/">Home</a></li>
             <li className="hover:text-primary hover:font-bold cursor-pointer"><a href="/books">Books</a></li>
             {/* <li className="hover:text-primary hover:font-bold cursor-pointer"><a href="/course">Course</a></li> */}
@@ -48,14 +63,17 @@ function Navbar({theme, setTheme, user, setUser}) {
             <li className="hover:text-primary hover:font-bold cursor-pointer"><a href="/about">About</a></li>
           </ul>
 
-          <div className=" flex  hover:bg-gray-100 rounded-md py-1">
-            <img className="w-5 p-1" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/search-line-icon.png" alt="" />
+          <div className=" flex w-100 border-gray-300 border-1 rounded-lg ">
+            <img className="w-6 bg-white rounded-l-lg p-1.5" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/search-line-icon.png" alt="" />
             <input
               type="text"
               placeholder="Search book"
-              className="input input-bordered input-sm outline-none"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={handleSearch}
+              className="input bg-base-200 w-full rounded-r-lg border-none input-sm outline-none bg-none"
             />
-          </div>
+          </div> 
 
           <Link to="/cart" className="relative">
               <ShoppingCart size={24} />

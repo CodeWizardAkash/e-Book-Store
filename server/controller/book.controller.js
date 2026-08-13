@@ -3,7 +3,29 @@ import Book from "../models/book.model.js";
 // GET /api/books
 export const getAllBooks = async (req, res) =>{
     try{
-        const books = await Book.find();
+        const {search} = req.query;
+        let filter ={};
+
+        if(search){
+          filter ={
+            $or: [
+              { 
+                title: {
+                  $regex: search,
+                  $options: "i",
+                }
+              },
+              {
+                author: {
+                  $regex: search,
+                  $options: "i",
+                },
+              },
+            ]
+          }
+        }
+
+        const books = await Book.find(filter);
 
         res.status(200).json({
             success: true,
