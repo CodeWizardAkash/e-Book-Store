@@ -6,18 +6,28 @@ import { getProfile } from "../services/auth.service.js";
 import { ShoppingCart } from "lucide-react";
 import { getCart } from "../services/cart.service";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function Navbar({theme, setTheme, user, setUser}) {
   const [open, setOpen] = useState(false);
   // const [user, setUser] = useState("");
   const [openLogin, setOpenLogin] = useState(false);
   const [cartCount, setCartCount] = useState(0);
-  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
+
+  const [searchParams] = useSearchParams();
+
+  const [search, setSearch] = useState(
+    searchParams.get("search") || ""
+  );
+
+  useEffect(() => {
+    setSearch(searchParams.get("search") || "");
+  }, [searchParams]);
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
