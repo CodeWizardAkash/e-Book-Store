@@ -1,6 +1,7 @@
 import React from "react";
 import banner from "/banner.png";
 import emailsvg from "/email_svg.svg";
+import { Link } from "react-router-dom";
 
 function Banner(){
     return(
@@ -13,11 +14,23 @@ function Banner(){
                     </h1>
                     <p className="mt-8 text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. In labore deleniti earum sed impedit eos minima fugit beatae, obcaecati, doloremque perspiciatis unde ad nobis dolores nemo repellat iste possimus vitae.</p>
                     
-                    <div className=" mt-10 border-1 border-emerald-600 rounded-md p-2 flex gap-3">
+                    {/* <div className=" mt-10 border-1 border-emerald-600 rounded-md p-2 flex gap-3">
                         <img className="w-8" src={emailsvg} alt="" />
                         <input className="outline-none w-full" type="email" placeholder="abc69@gmail.com" />
 
-                    </div>
+                    </div> */}
+
+                    <Link to={"/books"}>
+                        <button className="mt-25 ml-10  text-2xl font-bold px-10 rounded-xl p-5 bg-emerald-500 hover:cursor-pointer ">
+                            ALL BOOKS ⮞⮞
+                        </button>
+                    </Link>
+
+                    
+
+                    {/* <Link to={"/books"} className="ml-25  text-2xl font-bold px-10 rounded-xl p-5 bg-emerald-500 ">
+                        ALL BOOKS ⮞⮞
+                    </Link> */}
                     
                 </div>
             </div>

@@ -14,3 +14,8 @@ export const getBookById = async (id) => {
   const res = await API.get(`/books/${id}`);
   return res.data;
 };
+
+export const getPopularBooks = async () => {
+  const response = await API.get("/books/popular");
+  return response.data;
+};

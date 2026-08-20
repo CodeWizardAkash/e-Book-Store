@@ -8,11 +8,17 @@ import {
   createBook,
   updateBook,
   deleteBook,
+  getPopularBooks,
+  createManyBooks,
 } from "../controller/book.controller.js";
 
 const router = express.Router();
 
 router.get("/", getAllBooks);
+
+router.get("/popular", getPopularBooks);
+
+router.post("/bulk", createManyBooks);
 
 router.get("/free", getFreeBooks);
 
@@ -25,5 +31,7 @@ router.post("/", createBook);
 router.put("/:id", updateBook);
 
 router.delete("/:id", deleteBook);
+
+
 
 export default router;
